@@ -65,10 +65,5 @@ namespace HangTheMan
                 Console.ReadLine();
             }
         }
-
-        public void handler()
-        {
-            Console.WriteLine("Do stuff");
-        }
     }
 }

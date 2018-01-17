@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 namespace HangTheMan
 {
     public delegate void SomeDelegae();
-    class Game
+    class Game : GlobalVariables
     {
-        public string WordToGuess;
-        public string WordToGuessToLowerCase;
-        public StringBuilder DisplayToPlayer;
-        public List<string> UsedLettersPool = new List<string>();
 
         public void ReadyToStartGame()
         {
@@ -36,11 +32,6 @@ namespace HangTheMan
             }
         }
 
-        public int userLife = 0;
-        public int maxLife = 8;
-        public int lettersRevealed = 0;
-        public int UserTimer = 0;
-        public bool GameRunning = true;
 
         public void RunGame()
         {

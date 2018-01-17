@@ -18,22 +18,25 @@ namespace HangTheMan
             {
                 Console.Clear();
                 menu.print(menu.Welcome);
-                string input = Console.ReadLine();
-                string uppercase = input.ToLower();
-                if (uppercase == "!rules")
+                string input = Console.ReadLine().ToLower();
+                if (input == "!rules")
                 {
                     menu.print(menu.Rules);
                 }
-                else if (uppercase == "!credits")
+                else if (input == "!credits")
                 {
                     menu.print(menu.Credits);
                 }
-                else if  (uppercase == "!start")
+                else if  (input == "!start")
                 {
                     // Start the game
                     Game game = new Game();
                     game.ReadyToStartGame();
                     game.RunGame();
+                }
+                else if (input == "!end")
+                {
+                    System.Environment.Exit(1);
                 }
                 else
                 {

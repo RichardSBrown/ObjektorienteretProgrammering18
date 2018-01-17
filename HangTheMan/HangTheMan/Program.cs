@@ -30,7 +30,6 @@ namespace HangTheMan
                 }
                 else if  (uppercase == "!start")
                 {
-                    GameNotRunning = false;
                     // Start the game
                     Game game = new Game();
                     game.ReadyToStartGame();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HangTheMan
@@ -38,16 +39,23 @@ namespace HangTheMan
         public int userLife = 0;
         public int maxLife = 8;
         public int lettersRevealed = 0;
+        public int UserTimer = 0;
+        public bool GameRunning = true;
 
         public void RunGame()
         {
-            bool GameRunning = true;
+            Thread timerThread = new Thread(Timer);
+            timerThread.Start();
 
             while (GameRunning == true)
             {
                 char guessedLetterUpperCase;
                 Stats();
                 string guessedLetter = Console.ReadLine().ToLower();
+                if (guessedLetter.Length >= 2 || guessedLetter == " ")
+                {
+                    continue;
+                }
                 try
                 {
                     guessedLetterUpperCase = guessedLetter[0];
@@ -76,12 +84,38 @@ namespace HangTheMan
                         }
                     }
                 }
+                else if (!WordToGuessToLowerCase.Contains(guessedLetter))
+                {
+                    userLife++;
+                }
 
-
-
+                if (lettersRevealed == WordToGuess.Length)
+                {
+                    timerThread.Abort();
+                    Console.WriteLine("You won!");
+                    GameRunning = false;
+                    Console.WriteLine("Your time was " + UserTimer + " sec");
+                }
+                if (userLife == maxLife)
+                {
+                    timerThread.Abort();
+                    Console.WriteLine("You Lost!!");
+                    GameRunning = false;
+                    Console.WriteLine("Your time was " + UserTimer + " sec");
+                    Console.WriteLine("The word was " + WordToGuess);
+                }
 
                 UsedLettersPool.Add(guessedLetter);
                 
+            }
+        }
+
+        public void Timer()
+        {
+            while (GameRunning == true)
+            {
+                UserTimer++;
+                Thread.Sleep(1000);
             }
         }
 
@@ -108,11 +142,16 @@ namespace HangTheMan
         // You can add all the words you want in this array
         public string[] WordPool = 
         {
-            "car",
-            "guy",
-            "yellow",
-            "red",
-            "kurt"
+            "budge",
+            "captain",
+            "adopt",
+            "dismissal",
+            "jury",
+            "produce",
+            "shadow",
+            "fire",
+            "pitch",
+            "government"
         };
     }
 }

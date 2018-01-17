@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HangTheMan
 {
-    interface PrintStuff
+    public interface PrintStuff
     {
+       string print(string input);
     }
 }

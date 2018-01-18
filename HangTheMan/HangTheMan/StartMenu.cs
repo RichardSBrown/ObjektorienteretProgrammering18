@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HangTheMan
 {
-    class StartMenu : GlobalVariables
+    class StartMenu
     {
         public delegate void CallBackDelegate();
         CallBackDelegate callbackdel;
@@ -44,9 +44,9 @@ namespace HangTheMan
 
                 else if (input == "start")
                 {
-                    userLife = 0;
-                    UsedLettersPool.Clear();
                     // Start the game
+
+                    // Make a new thread every time, so you can play more then one game before the game chashes
                     Thread ReadyTheGameThread = new Thread(game.ReadyToStartGame);
                     ReadyTheGameThread.Start();
                     callbackdel();

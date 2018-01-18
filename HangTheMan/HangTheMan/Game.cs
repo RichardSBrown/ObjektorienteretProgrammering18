@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HangTheMan
 {
-    public delegate void SomeDelegae();
+    // All the variables are stored in GloBalVariables
     class Game : GlobalVariables
     {
 
@@ -37,8 +37,11 @@ namespace HangTheMan
 
         public void RunGame()
         {
+            // Makes a new thread so the timer thread start over
             Thread timerThread = new Thread(Timer);
             timerThread.Start();
+
+            // Resets the values so the game can be played again
             userLife = 0;
             UsedLettersPool.Clear();
 

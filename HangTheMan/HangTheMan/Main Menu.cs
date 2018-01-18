@@ -9,9 +9,9 @@ namespace HangTheMan
     class Main_Menu : PrintStuff
     {
         public string Welcome = "Welcome to hang the man \n" +
-            "!Start \n" +
-            "!Rules \n" +
-            "!Credits \n";
+            "> Start \n" +
+            "> Rules \n" +
+            "> Credits \n";
 
 
         public string Rules = "RULES: \n" +

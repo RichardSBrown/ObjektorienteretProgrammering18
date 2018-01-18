@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="GlobalVariables.cs" />
     <Compile Include="Main Menu.cs" />
     <Compile Include="PrintStuff.cs" />
     <Compile Include="Program.cs" />

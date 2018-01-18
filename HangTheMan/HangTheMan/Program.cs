@@ -11,11 +11,11 @@ namespace HangTheMan
     {
         static void Main(string[] args)
         {
-            StartMenu startmenu = new StartMenu(kurt);
+            StartMenu startmenu = new StartMenu(placeHolder);
             startmenu.StartUp();
         }
 
-        static void kurt()
+        static void placeHolder()
         {
             Console.WriteLine("");
         }

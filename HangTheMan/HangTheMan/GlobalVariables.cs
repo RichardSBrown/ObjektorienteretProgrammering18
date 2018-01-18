@@ -20,7 +20,7 @@ namespace HangTheMan
         public int maxLife = 8;
         public int lettersRevealed = 0;
         public int UserTimer = 0;
-        public bool GameRunning = true;
+        public bool GameRunning = false;
         // End of Game
     }
 }

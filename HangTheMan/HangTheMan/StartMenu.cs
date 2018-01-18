@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HangTheMan
 {
-    class StartMenu
+    class StartMenu : GlobalVariables
     {
         public delegate void CallBackDelegate();
         CallBackDelegate callbackdel;
@@ -23,7 +23,6 @@ namespace HangTheMan
             Main_Menu menu = new Main_Menu();
             bool GameNotRunning = true;
             Game game = new Game();
-            Thread ReadyTheGameThread = new Thread(game.ReadyToStartGame);
 
 
 
@@ -33,25 +32,28 @@ namespace HangTheMan
                 menu.print(menu.Welcome);
                 string input = Console.ReadLine().ToLower();
 
-                if (input == "!rules")
+                if (input == "rules")
                 {
                     menu.print(menu.Rules);
                 }
 
-                else if (input == "!credits")
+                else if (input == "credits")
                 {
                     menu.print(menu.Credits);
                 }
 
-                else if (input == "!start")
+                else if (input == "start")
                 {
+                    userLife = 0;
+                    UsedLettersPool.Clear();
                     // Start the game
+                    Thread ReadyTheGameThread = new Thread(game.ReadyToStartGame);
                     ReadyTheGameThread.Start();
                     callbackdel();
                     game.RunGame();
                 }
 
-                else if (input == "!end")
+                else if (input == "end")
                 {
                     System.Environment.Exit(1);
                 }

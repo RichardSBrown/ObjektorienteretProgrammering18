@@ -13,22 +13,24 @@ namespace HangTheMan
 
         public void ReadyToStartGame()
         {
-            StartMenu startmenu = new StartMenu(RunGame);
-             
-            Words word = new Words();
-            Random nextWord = new Random();
-
-            // Takes a word form the WordPool and get the length off that.
-            WordToGuess = word.WordPool[nextWord.Next(0, word.WordPool.Length)];
-
-            // I want it to be LowerCase so no matter how the user inputs the input it will check it, 
-            // and uppercase is easier to work with
-            WordToGuessToLowerCase = WordToGuess.ToLower();
-
-            DisplayToPlayer = new StringBuilder(WordToGuess.Length);
-            for (int i = 0; i < WordToGuess.Length; i++)
+            while (GameRunning == false)
             {
-                DisplayToPlayer.Append('-');
+                Words word = new Words();
+                Random nextWord = new Random();
+
+                // Takes a word form the WordPool and get the length off that.
+                WordToGuess = word.WordPool[nextWord.Next(0, word.WordPool.Length)];
+
+                // I want it to be LowerCase so no matter how the user inputs the input it will check it, 
+                // and uppercase is easier to work with
+                WordToGuessToLowerCase = WordToGuess.ToLower();
+
+                DisplayToPlayer = new StringBuilder(WordToGuess.Length);
+                for (int i = 0; i < WordToGuess.Length; i++)
+                {
+                    DisplayToPlayer.Append('-');
+                }
+                GameRunning = true;
             }
         }
 
@@ -37,7 +39,8 @@ namespace HangTheMan
         {
             Thread timerThread = new Thread(Timer);
             timerThread.Start();
-
+            userLife = 0;
+            UsedLettersPool.Clear();
 
             while (GameRunning == true)
             {
@@ -89,6 +92,7 @@ namespace HangTheMan
                     Console.WriteLine("You won!");
                     GameRunning = false;
                     Console.WriteLine("Your time was " + UserTimer + " sec");
+                    
                 }
                 if (userLife == maxLife)
                 {
@@ -97,6 +101,7 @@ namespace HangTheMan
                     GameRunning = false;
                     Console.WriteLine("Your time was " + UserTimer + " sec");
                     Console.WriteLine("The word was " + WordToGuess);
+                    
                 }
 
                 UsedLettersPool.Add(guessedLetter);
@@ -109,7 +114,7 @@ namespace HangTheMan
             // Displays the dots equals to the word 
             Console.WriteLine(DisplayToPlayer);
 
-            Console.WriteLine("Life: '{0}' / '{1}'", userLife, maxLife);
+            Console.WriteLine("Life: {0} / {1}", userLife, maxLife);
             Console.Write("Used letters: ");
             foreach (string usedletter in UsedLettersPool)
             {
